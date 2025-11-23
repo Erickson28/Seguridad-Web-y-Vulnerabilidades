@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a Vulnerabilidades de Seguridad Web</title>
+    <!-- Carga de Tailwind CSS para clases de maquetación -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Bloque <style> para el CSS Personalizado -->
+    <style>
+        /* 1. Importación de Fuente */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        /* 2. Estilos Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Fondo oscuro (Deep Indigo) */
+            color: #ffffff;
+        }
+        
+        /* 3. Estilos de Tarjeta y Animación */
+        .vulnerability-card {
+            /* Transiciones para la animación (CSS Aparte) */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid #3e4465; /* Borde sutil */
+        }
+        
+        .vulnerability-card:hover {
+            /* Animación: se eleva y se agranda ligeramente, y cambia el borde */
+            transform: translateY(-5px) scale(1.01); 
+            box-shadow: 0 15px 30px rgba(62, 68, 101, 0.8);
+            border-color: #e94560; /* Color de acento al pasar el ratón */
+        }
+        
+        /* 4. Color de Acento */
+        .accent-color {
+            color: #e94560; /* Rojo/Rosa brillante */
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-6xl mx-auto py-12">
+
+        <!-- Encabezado Principal -->
+        <header class="text-center mb-16">
+            <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 tracking-tight">
+                <span class="accent-color">Anatomía</span> de la Seguridad Web
+            </h1>
+            <p class="text-xl text-gray-400">Las Cuatro Vulnerabilidades Fundamentales que Debes Conocer</p>
+        </header>
+
+        <!-- Contenedor de las Tarjetas de Vulnerabilidad (Grid Responsivo) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+            <!-- 1. Inyección de Base de Datos (SQL Injection) -->
+            <div class="vulnerability-card bg-gray-800 rounded-xl p-6 md:p-8">
+                <div class="flex items-center mb-4">
+                    <!-- Ícono de Bóveda Rota -->
+                    <svg class="w-10 h-10 accent-color mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM12 4.5V3m0 18v-1.5M10.325 5.575L9.673 4.923m4.304 14.304l.652-.652m-10.428 0L3.673 19.077m4.304-14.304L7.673 4.923M18 12h.75m-14.25 0H6"></path></svg>
+                    <h2 class="text-3xl font-bold">Inyección de Base de Datos</h2>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    La Inyección de Base de Datos (como SQL Injection) ocurre cuando un atacante introduce comandos de la base de datos a través de campos de entrada no validados.
+                </p>
+                <p class="text-sm text-gray-400">
+                    <span class="font-semibold accent-color">Impacto:</span> Acceso, modificación o eliminación no autorizada de datos sensibles.
+                </p>
+            </div>
+
+            <!-- 2. XSS (Cross-Site Scripting) -->
+            <div class="vulnerability-card bg-gray-800 rounded-xl p-6 md:p-8">
+                <div class="flex items-center mb-4">
+                    <!-- Ícono de Script -->
+                    <svg class="w-10 h-10 accent-color mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <h2 class="text-3xl font-bold">XSS (Cross-Site Scripting)</h2>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    XSS permite a los atacantes inyectar scripts maliciosos del lado del cliente (típicamente JavaScript) en páginas web vistas por otros usuarios.
+                </p>
+                <p class="text-sm text-gray-400">
+                    <span class="font-semibold accent-color">Impacto:</span> Robo de cookies de sesión, secuestro de cuentas y modificación de contenido de la página.
+                </p>
+            </div>
+
+            <!-- 3. Fallos de Validación (Input Validation Flaws) -->
+            <div class="vulnerability-card bg-gray-800 rounded-xl p-6 md:p-8">
+                <div class="flex items-center mb-4">
+                    <!-- Ícono de Advertencia de Datos -->
+                    <svg class="w-10 h-10 accent-color mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.32 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <h2 class="text-3xl font-bold">Fallos de Validación</h2>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Ocurre cuando la aplicación acepta datos de entrada que no cumplen con el formato o los límites esperados, permitiendo que datos inesperados o maliciosos fluyan al sistema.
+                </p>
+                <p class="text-sm text-gray-400">
+                    <span class="font-semibold accent-color">Impacto:</span> Desbordamientos de búfer, inyección de comandos o corrupción de datos.
+                </p>
+            </div>
+
+            <!-- 4. Manejo Inseguro de Sesiones (Insecure Session Management) -->
+            <div class="vulnerability-card bg-gray-800 rounded-xl p-6 md:p-8">
+                <div class="flex items-center mb-4">
+                    <!-- Ícono de Candado Abierto -->
+                    <svg class="w-10 h-10 accent-color mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm0-4v-4m0 0v-4a4 4 0 018 0v4m-8-4h8"></path></svg>
+                    <h2 class="text-3xl font-bold">Manejo Inseguro de Sesiones</h2>
+                </div>
+                <p class="text-gray-300 mb-4">
+                    Implica fallos en cómo la aplicación crea, gestiona o destruye los identificadores de sesión (tokens), haciendo que sean predecibles o fáciles de robar.
+                </p>
+                <p class="text-sm text-gray-400">
+                    <span class="font-semibold accent-color">Impacto:</span> Secuestro de sesión, permitiendo a un atacante actuar como el usuario legítimo sin credenciales.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Pie de página o llamado a la acción -->
+        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <p class="text-gray-500 text-lg">
+                <span class="font-bold accent-color">¡Recuerda!</span> La seguridad es un proceso continuo, no un destino.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
